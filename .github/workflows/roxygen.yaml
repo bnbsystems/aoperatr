@@ -15,7 +15,7 @@ jobs:
     name: Manual pages check
     runs-on: ubuntu-latest
     container:
-      image: rocker/tidyverse:3.6.3
+      image: rocker/tidyverse:4.0.3
 
     steps:
       - name: Checkout repo

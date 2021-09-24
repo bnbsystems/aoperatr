@@ -15,7 +15,7 @@ Depends:
   knitr,
   tidyverse,
   gridExtra,
-  plotly, 
+  plotly,
   stringi
 Imports:
     yaml,
@@ -29,6 +29,6 @@ Imports:
     data.table,
     lubridate,
     magrittr,
-    remotes  
+    remotes
 URL: https://github.com/bnbsystems/aoperatr
 
