@@ -1,0 +1,37 @@
+name: Roxygen
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  man-pages:
+    name: Manual pages check
+    runs-on: ubuntu-latest
+    container:
+      image: rocker/tidyverse:3.6.3
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Generate man pages
+        run: roxygen2::roxygenize('.', roclets = c('rd', 'collate', 'namespace'))
+        shell: Rscript {0}
+
+      - name: Check if man pages are up-to-date
+        run: |
+          if [[ -z $(git status -s) ]]
+          then
+            echo "roxygen2::roxygenize('.', roclets = c('rd', 'collate', 'namespace'))"
+            set -o errexit
+          else
+            echo "Manuals are up-to-date"
+          fi
+        shell: bash
