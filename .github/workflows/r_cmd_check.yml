@@ -4,9 +4,13 @@ name: R cmd check
 
 on:
   push:
-    branches: [ master, main ]
+    branches:
+      - main
+      - master
   pull_request:
-    branches: [ master, main ]
+    branches:
+      - main
+      - master
 
 jobs:
   build:
