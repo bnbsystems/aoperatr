@@ -11,7 +11,8 @@ Encoding: UTF-8
 LazyData: true
 Depends:
   tidyverse,
-  stringi
+  stringi,
+  roxygen2
 Imports:
     yaml,
     dplyr,
