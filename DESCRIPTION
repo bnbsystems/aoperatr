@@ -13,18 +13,19 @@ Depends:
   tidyverse,
   stringi,
   roxygen2,
-  lintr
+  lintr,
+  knitr
 Imports:
-    yaml,
-    dplyr,
-    stringr,
-    ggplot2,
-    jsonlite,
-    xtable,
-    pander,
-    grid,
-    data.table,
-    lubridate,
-    magrittr,
-    remotes
+  yaml,
+  dplyr,
+  stringr,
+  ggplot2,
+  jsonlite,
+  xtable,
+  pander,
+  grid,
+  data.table,
+  lubridate,
+  magrittr,
+  remotes
 URL: https://github.com/bnbsystems/aoperatr
