@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install dependencies
-        run: install.packages("oysteR", repos="http://cran.us.r-project.org")
+        run: install.packages(c("rjson", "oysteR"), repos="http://cran.us.r-project.org")
         shell: Rscript {0}
 
       - name: Run oysteR scan on dependencies
