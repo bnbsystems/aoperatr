@@ -12,7 +12,8 @@ LazyData: true
 Depends:
   tidyverse,
   stringi,
-  roxygen2
+  roxygen2,
+  lintr
 Imports:
     yaml,
     dplyr,
