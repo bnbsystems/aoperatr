@@ -1,20 +1,66 @@
 
 
 #' @export
+
 percent <- function(x, digits = 2, format = "f", ...) {
   paste0(formatC(100 * x, format = format, digits = digits, ...), "%")
 }
 
-#' @export
 price <- function(x) {
   format(x, big.mark = " ", scientific = FALSE, nsmall = 0)
 }
+
+is_roman <- function(input) {
+  grepl("I|X|V", input, fixed = FALSE)
+}
+
+
+converty_to_numeric_if_roman <- function(number) {
+  if (is.roman(number)) {
+    number <- as.roman(number)
+  }
+  as.numeric(number)
+}
+
+converty_to_numeric_if_roman <- Vectorize(converty_to_numeric_if_roman)
+
+
+formatPrice <- function(number) {
+  return(format(number, big.mark = " ", scientific = FALSE, nsmall = 0))
+}
+
+
+
+fill_with_mapping <- function(dataframe, value_mapping, column_mapping) {
+  assert_that(assertthat::not_empty(dataframe), msg = "dataframe should have rows")
+  assert_that(assertthat::not_empty(value_mapping))
+  assert_that(assertthat::has_name(value_mapping, c("oldvalue", "newvalue", "oldColname")), msg = "value_mapping needs to have oldvalue, newvalue and oldColname columns")
+
+  assert_that(assertthat::not_empty(column_mapping))
+  assert_that(assertthat::not_empty(names(column_mapping)), msg = "column_mapping should have names")
+  assert_that(assertthat::noNA(column_mapping))
+
+  maching_colnames <- colnames(dataframe)[colnames(dataframe) %in% names(column_mapping)]
+  assert_that(assertthat::not_empty(maching_colnames))
+  assert_that(assertthat::noNA(maching_colnames))
+
+  for (colname in maching_colnames) {
+    mapped <- unlist(sapply(dataframe[, colname], function(val) {
+      value_mapping[value_mapping$oldvalue == val & value_mapping$oldColname == colname, ]$newvalue
+    }))
+    dataframe[, colname] <- mapped
+  }
+  names(dataframe)[colnames(dataframe) %in% maching_colnames] <- column_mapping[maching_colnames]
+  return(dataframe)
+}
+
+
 
 #' @export
 aoperat_options <- function() {
   options(stringsAsFactors = FALSE)
   options(max.print = 100)
-  options(scipen = 10)
+  options(scipen = 999)
   options(Encoding = "UTF-8")
   options(show.error.locations = TRUE)
   options(show.error.messages = TRUE)
@@ -22,8 +68,7 @@ aoperat_options <- function() {
   options(warnPartialMatchArgs = TRUE)
   options(warnPartialMatchAttr = TRUE)
   options(warnPartialMatchDollar = TRUE)
-  options(tinytex.verbose = TRUE)
-  knitr::opts_chunk$set(echo = F, message = F, warning = F, cache = F)
+
 }
 
 

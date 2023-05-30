@@ -1,31 +1,21 @@
 Package: aoperatr
 Type: Package
 Title: Package for valuating properties.
-Version: 0.1.1
+Version: 0.1.1.9000
 Author: BnB Systems
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+License: MIT | file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends:
   tidyverse,
-  stringi,
-  roxygen2,
-  lintr,
-  knitr
+  stringi
 Imports:
-  yaml,
+  assertthat,
   dplyr,
-  stringr,
-  ggplot2,
-  jsonlite,
-  xtable,
-  pander,
-  grid,
-  data.table,
   lubridate,
-  magrittr,
-  remotes
+  magrittr
 URL: https://github.com/bnbsystems/aoperatr
+RoxygenNote: 7.2.3
